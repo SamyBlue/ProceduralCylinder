@@ -1,9 +1,12 @@
 import bpy
 import math
 
-def createCylinder(radius, height):
+def renderMesh(mesh, verts, faces):
+    mesh.from_pydata(verts, [], faces)
+
+def createCylinder(radius: float, height: float, sides: int, layers: int): #TODO: Add support for layers and sides and fix height being a float
     # Set up the scene
-    mesh = bpy.data.meshes.new("myBeautifulMesh")  # add the new mesh
+    mesh = bpy.data.meshes.new("cylinderMesh")  # add the new mesh
     obj = bpy.data.objects.new(mesh.name, mesh)
     col = bpy.data.collections["Collection"]
     col.objects.link(obj)
@@ -20,7 +23,8 @@ def createCylinder(radius, height):
             verts.append((x, y, z))
             if i > 0:
                 faces.append(((i * 360) + j, (i * 360) + j + 1, ((i - 1) * 360) + j + 1, ((i - 1) * 360) + j))
-    mesh.from_pydata(verts, [], faces)
+
+    renderMesh(mesh, verts, faces)
 
     return mesh
 
