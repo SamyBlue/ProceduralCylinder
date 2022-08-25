@@ -16,23 +16,25 @@ def createCylinder(radius: float, height: float, sides: int, layers: int): #TODO
     verts = []
     edges = []
     faces = []
+
     for i in range(0, layers):
-        for j in range(0, 360):
-            x = radius * math.cos(math.radians(j))
-            y = radius * math.sin(math.radians(j))
+        for j in range(0, sides):
+            theta = (j / sides) * 2 * math.pi
+            x = radius * math.cos(theta)
+            y = radius * math.sin(theta)
             z = height * i / (layers - 1)
             verts.append((x, y, z))
-    
-            edges.append((i * 360 + j, i * 360 + (j + 1) % 360))
+
+            edges.append((i * sides + j, i * sides + (j + 1) % sides))
 
             if i > 0:
-                edges.append((j + i * 360, j + (i - 1) * 360))
-                faces.append(((i * 360) + j, (i * 360) + j + 1, ((i - 1) * 360) + j + 1, ((i - 1) * 360) + j))
-
+                edges.append((j + i * sides, j + (i - 1) * sides))
+                
+    
     renderMesh(mesh, verts, edges, faces)
 
     return mesh
 
-createCylinder(1, 14, 10, 5).validate(verbose=True)
+createCylinder(1, 14, 5, 5).validate(verbose=True)
 
 print("Done")
