@@ -4,7 +4,7 @@ import math
 def renderMesh(mesh, verts, edges, faces):
     mesh.from_pydata(verts, edges, faces)
 
-def createCylinder(radius: float, height: float, sides: int, layers: int): #TODO: Add support for sides and fix single vertex bug
+def createCylinder(radius: float, height: float, sides: int, layers: int):
     # Set up the scene
     mesh = bpy.data.meshes.new("cylinderMesh")  # add the new mesh
     obj = bpy.data.objects.new(mesh.name, mesh)
