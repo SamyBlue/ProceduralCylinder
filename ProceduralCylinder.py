@@ -22,12 +22,11 @@ def createCylinder(radius: float, height: float, sides: int, layers: int): #TODO
             y = radius * math.sin(math.radians(j))
             z = height * i / (layers - 1)
             verts.append((x, y, z))
+    
+            edges.append((i * 360 + j, i * 360 + (j + 1) % 360))
 
-            if j > 0:
-                edges.append((j + i * 360, j + (i + 1) * 360))
-                edges.append((j + (i + 1) * 360, j + i * 360))
-            
             if i > 0:
+                edges.append((j + i * 360, j + (i - 1) * 360))
                 faces.append(((i * 360) + j, (i * 360) + j + 1, ((i - 1) * 360) + j + 1, ((i - 1) * 360) + j))
 
     renderMesh(mesh, verts, edges, faces)
