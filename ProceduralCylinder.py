@@ -4,7 +4,7 @@ import math
 def renderMesh(mesh, verts, faces):
     mesh.from_pydata(verts, [], faces)
 
-def createCylinder(radius: float, height: float, sides: int, layers: int): #TODO: Add support for layers and sides and fix height being a float
+def createCylinder(radius: float, height: float, sides: int, layers: int): #TODO: Add support for sides and fix height being a float
     # Set up the scene
     mesh = bpy.data.meshes.new("cylinderMesh")  # add the new mesh
     obj = bpy.data.objects.new(mesh.name, mesh)
@@ -15,7 +15,7 @@ def createCylinder(radius: float, height: float, sides: int, layers: int): #TODO
     # Create the mesh
     verts = []
     faces = []
-    for i in range(0, height):
+    for i in range(0, layers):
         for j in range(0, 360):
             x = radius * math.cos(math.radians(j))
             y = radius * math.sin(math.radians(j))
