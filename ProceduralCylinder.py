@@ -17,8 +17,8 @@ def createCylinder(radius: float, height: float, sides: int, layers: int): #TODO
     edges = []
     faces = []
 
-    for i in range(0, layers):
-        for j in range(0, sides):
+    for i in range(0, layers): # "like v"
+        for j in range(0, sides): # "like u"
             theta = (j / sides) * 2 * math.pi
             x = radius * math.cos(theta)
             y = radius * math.sin(theta)
@@ -29,6 +29,7 @@ def createCylinder(radius: float, height: float, sides: int, layers: int): #TODO
 
             if i > 0:
                 edges.append((j + i * sides, j + (i - 1) * sides))
+                faces.append((j + i * sides, j + (i - 1) * sides, (j + 1) % sides + (i - 1) * sides, (j + 1) % sides + i * sides))
                 
     
     renderMesh(mesh, verts, edges, faces)
