@@ -200,6 +200,6 @@ def createCylinder(radius: float, height: float, sides: int, layers: int):
 
     return mesh
 
-createCylinder(1, 14, 5, 5).validate(verbose=True)
+createCylinder(10, 80, 12, 41).validate(verbose=True)
 
 print("Done")
